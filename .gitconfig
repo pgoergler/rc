@@ -1,0 +1,53 @@
+[Github]
+	user = pgoergler
+	token = 
+[filter "media"]
+	required = true
+	clean = git media clean %f
+	smudge = git media smudge %f
+[user]
+	name = 
+	email = 
+[core]
+	excludesfile = /.gitignore
+	quotepath = false
+	pager = less -r 
+	editor = nano
+[color]
+	ui = auto # covers diff = true, status = auto, branch = auto
+	diff = auto
+	status = auto
+	branch = auto
+	interactive = true
+[alias]
+	st = status
+	co = checkout
+	hist = log --graph --pretty=format:'%C(red)%h%C(yellow)%d%Creset %s %C(white), %C(green)%ar (%cd)%Creset %C(bold blue)<%an>%Creset'
+	wdiff = diff --color-words
+	whoami = var 'GIT_COMMITTER_IDENT'
+	save = !git add -A && git commit -m 'SAVEPOINT'
+	wip = !git add -u && git commit -m "WIP" 
+	undo = "!f() {git reset --hard $(git rev-parse --abbrev-ref HEAD)@{${1-1}};}; f"
+[pager]
+	color = true
+
+[status]
+	color = true
+[push]
+	default = simple
+[rerere]
+	enabled = true
+	autoupdate = true
+[filter "hawser"]
+	clean = git hawser clean %f
+	smudge = git hawser smudge %f
+	required = true
+[filter "lfs"]
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+[credential]
+	helper = osxkeychain
+[log]
+	date = iso
